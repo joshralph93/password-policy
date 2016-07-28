@@ -40,7 +40,7 @@ class PasswordValidator
     public function validate($attribute, $value, $parameters, $validator)
     {
         // Use the default policy if the user has not specified one.
-        $policy = isset($parameters[0]) ? $parameters[0] : $this->manager->getDefault();
+        $policy = isset($parameters[0]) ? $parameters[0] : $this->manager->getDefaultName();
 
         return $this->manager
             ->validator($policy)

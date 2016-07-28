@@ -21,7 +21,7 @@ class PolicyManager
      *
      * @var string
      */
-    private static $defaultPolicy = 'default';
+    protected $defaultPolicy = 'default';
 
 
     /**
@@ -33,7 +33,7 @@ class PolicyManager
      */
     public function setDefaultName($name)
     {
-        static::$defaultPolicy = $name;
+        $this->defaultPolicy = $name;
 
         return $this;
     }
@@ -45,7 +45,7 @@ class PolicyManager
      */
     public function getDefaultName()
     {
-        return static::$defaultPolicy;
+        return $this->defaultPolicy;
     }
 
     /**
