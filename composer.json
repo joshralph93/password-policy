@@ -1,5 +1,5 @@
 {
-  "name": "joshralph93/password-policy",
+  "name": "joshralph/password-policy",
   "description": "A library to intuitively create password policies and validate a subject against them.",
   "autoload": {
     "psr-4": {
