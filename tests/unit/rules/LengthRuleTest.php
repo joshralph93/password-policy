@@ -11,6 +11,7 @@ class LengthRuleTest extends \PHPUnit_Framework_TestCase
         $rule = new LengthRule();
         $rule->min(10);
 
+        $this->assertFalse($rule->test(''));
         $this->assertFalse($rule->test('hello'));
         $this->assertTrue($rule->test('helloworld'));
         $this->assertTrue($rule->test('hello world'));

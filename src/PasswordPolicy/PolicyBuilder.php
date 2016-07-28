@@ -110,4 +110,9 @@ class PolicyBuilder
 
         return $this;
     }
+
+    public function getPolicy()
+    {
+        return $this->policy;
+    }
 }

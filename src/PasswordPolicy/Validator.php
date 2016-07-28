@@ -11,22 +11,29 @@ class Validator
     {
         $this->policy = $policy;
     }
+
     /**
      * @param Policy $policy
      *
      * @return $this
      */
-    protected function setPolicy(Policy $policy)
+    public function setPolicy(Policy $policy)
     {
         $this->policy = $policy;
 
         return $this;
     }
 
+    public function getPolicy()
+    {
+        return $this->policy;
+    }
+
     public function attempt($subject)
     {
+        /** @var Rule $rule */
         foreach ($this->policy->rules() as $rule) {
-            if (!call_user_func_array($rule, [$subject])) {
+            if (!$rule->test($subject)) {
                 return false;
             }
         }
