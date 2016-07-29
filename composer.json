@@ -6,6 +6,9 @@
       "PasswordPolicy\\": "src/PasswordPolicy/"
     }
   },
+  "require": {
+    "php": ">=5.5"
+  },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
     "mockery/mockery": "^0.9.5"
