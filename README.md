@@ -64,6 +64,6 @@ Phrases that the password should not contain
 *Example*
 
 ```php
-    ->doesNotContain('password', $firstName, $lastName)
+->doesNotContain('password', $firstName, $lastName)
 ```
 
