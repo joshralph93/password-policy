@@ -12,9 +12,9 @@ $ composer require joshralph/password-policy
 ### Policy Builder
 
 ```php
-    $builder = new \PasswordPolicy\PolicyBuilder(new \PasswordPolicy\Policy);
-    $builder->minLength(6)
-        ->upperCase();
+$builder = new \PasswordPolicy\PolicyBuilder(new \PasswordPolicy\Policy);
+$builder->minLength(6)
+    ->upperCase();
 ```
 
 Any of the following methods may be chained on the builder class to build your password policy.
