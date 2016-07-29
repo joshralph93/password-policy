@@ -62,28 +62,6 @@ class PolicyBuilder
         return $this;
     }
 
-    public function contains($phrases)
-    {
-        $phrases = is_array($phrases) ? $phrases : func_get_args();
-
-        $this->policy->addRule(
-            (new ContainRule)->phrase($phrases)
-        );
-
-        return $this;
-    }
-
-    public function doesNotContain($phrases)
-    {
-        $phrases = is_array($phrases) ? $phrases : func_get_args();
-
-        $this->policy->addRule(
-            (new ContainRule)->phrase($phrases)->doesnt()
-        );
-
-        return $this;
-    }
-
     public function upperCase($min = 1)
     {
         $this->policy->addRule(
@@ -106,6 +84,28 @@ class PolicyBuilder
     {
         $this->policy->addRule(
             (new DigitRule)->min($min)
+        );
+
+        return $this;
+    }
+
+    public function doesNotContain($phrases)
+    {
+        $phrases = is_array($phrases) ? $phrases : func_get_args();
+
+        $this->policy->addRule(
+            (new ContainRule)->phrase($phrases)->doesnt()
+        );
+
+        return $this;
+    }
+
+    public function contains($phrases)
+    {
+        $phrases = is_array($phrases) ? $phrases : func_get_args();
+
+        $this->policy->addRule(
+            (new ContainRule)->phrase($phrases)
         );
 
         return $this;
