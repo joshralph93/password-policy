@@ -1,8 +1,10 @@
 <?php namespace PasswordPolicy\Providers\Laravel;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use PasswordPolicy\PolicyBuilder;
 use PasswordPolicy\PolicyManager;
+use PasswordPolicy\Providers\Laravel\Facade;
 
 /**
  * Class PasswordPolicyServiceProvider
@@ -20,6 +22,8 @@ class PasswordPolicyServiceProvider extends ServiceProvider
     {
         $this->registerManager();
         $this->registerBuilder();
+        $this->registerFacade();
+        $this->defineDefaultPolicy();
     }
 
     /**
@@ -29,7 +33,6 @@ class PasswordPolicyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->defineDefaultPolicy();
         $this->configureValidationRule();
     }
 
@@ -64,6 +67,17 @@ class PasswordPolicyServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register password policy facade
+     *
+     * @return void
+     */
+    protected function registerFacade()
+    {
+        $loader = AliasLoader::getInstance();
+        $loader->alias('PasswordPolicy', Facade::class);
+    }
+
+    /**
      * Define the default password policy
      *
      * @return void
@@ -88,6 +102,6 @@ class PasswordPolicyServiceProvider extends ServiceProvider
      */
     protected function defaultPolicy(PolicyBuilder $builder)
     {
-        return $builder->minLength(3)->getPolicy();
+        return $builder->getPolicy();
     }
 }
