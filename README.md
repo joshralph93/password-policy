@@ -2,6 +2,12 @@
 
 A fluent password policy builder library. The package can be used stand-alone or easily added to Laravel. 
 
+# Table of Contents
+- [Install](#install)
+- [Usage](#usage)
+    - [Policy Builder](#policy-builder)
+    - [Laravel](#larave)
+
 ## Install
 ```
 $ composer require joshralph/password-policy
@@ -67,3 +73,72 @@ Phrases that the password should not contain
 ->doesNotContain('password', $firstName, $lastName)
 ```
 
+### Laravel
+
+If you are a Laravel user, this package can seamlessly integrate with your validators.
+
+#### Install Package
+
+Begin by adding the below service provider.
+```php
+// config/app.php
+
+'providers' => [
+    \PasswordPolicy\Providers\Laravel\PasswordPolicyServiceProvider::class,
+],
+```
+
+#### Define Policies
+
+Within an app service provider (e.g. AppServiceProvider.php) you can start defining password policies.
+
+```php
+// App/Providers/AppServiceProvider.php
+
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+public function boot()
+{
+    \PasswordPolicy::define('default', function (PolicyBuilder $builder) {
+        $builder->minLength(8)
+            ->upperCase(3)
+            ...
+    });
+}
+
+// remember to add the builder use statement at the top of the class
+```
+
+You can define as many policies as you require, however it's recommended to stick with 'default' when possible.
+
+#### Setup Validation
+
+Once you're policies have been defined, you're ready to start using the policies. A new 'password' validation rule is now available to use.
+
+```php
+// Request class
+
+/**
+ * Declare validation rules
+ * 
+ * @return array
+ */
+public function rules()
+{
+    return [
+        ...
+        'password' => 'required|password'
+    ];
+}
+
+```
+
+The validator will use the 'default' policy by default. To use an alternative policy, add an additional parameter:
+```php
+
+'password' => 'required|password:admin'
+
+```
