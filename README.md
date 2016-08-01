@@ -4,9 +4,11 @@ A fluent password policy builder library. The package can be used stand-alone or
 
 # Table of Contents
 - [Install](#install)
-- [Usage](#usage)
-    - [Policy Builder](#policy-builder)
-    - [Laravel](#larave)
+- [Stand Alone Usage](#policy-builder)
+- [Laravel](#larave)
+    - [Install](#install-package)
+    - [Define Policies](#define-policies)
+    - [Setup Validation](#setup-validation)
 
 ## Install
 ```

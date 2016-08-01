@@ -14,10 +14,12 @@ class PolicyBuilderTest extends \PHPUnit_Framework_TestCase
         $mock = \Mockery::mock(Policy::class)
             ->shouldReceive('addRule')
             ->with(\Mockery::type(LengthRule::class))
-            ->mock();
+            ->once();
 
-        $builder = new PolicyBuilder($mock);
+        $builder = new PolicyBuilder($mock->getMock());
         $builder->minLength(2);
+
+        $this->assertTrue(true);
     }
 
     protected function tearDown()
