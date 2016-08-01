@@ -96,6 +96,9 @@ Within an app service provider (e.g. AppServiceProvider.php) you can start defin
 ```php
 // App/Providers/AppServiceProvider.php
 
+// use PasswordPolicy\PolicyBuilder;
+ 
+
 /**
  * Bootstrap any application services.
  *
@@ -109,8 +112,6 @@ public function boot()
             // ...
     });
 }
-
-// remember to add the builder use statement at the top of the class
 ```
 
 You can define as many policies as you require, however it's recommended to stick with 'default' when possible.
