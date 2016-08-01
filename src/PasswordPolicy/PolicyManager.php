@@ -1,5 +1,6 @@
 <?php namespace PasswordPolicy;
 
+use Closure;
 use InvalidArgumentException;
 
 /**
@@ -14,7 +15,7 @@ class PolicyManager
      *
      * @var array
      */
-    private $policies = [];
+    protected $policies = [];
 
     /**
      * Default policy name
@@ -52,15 +53,64 @@ class PolicyManager
      * Define a new policy by name
      *
      * @param $name string
-     * @param $policy Policy
+     * @param $policy Policy|PolicyBuilder|Closure
      *
      * @return $this
      */
-    public function define($name, Policy $policy)
+    public function define($name, $policy)
     {
-        $this->policies[$name] = $policy;
+        $this->policies[$name] = $this->parsePolicy($policy);
 
         return $this;
+    }
+
+    /**
+     * Parse policy
+     *
+     * @param $policy
+     *
+     * @return Policy
+     * @throws InvalidArgumentException
+     */
+    protected function parsePolicy($policy)
+    {
+        if ($policy instanceof Policy) {
+            return $policy;
+        }
+
+        if ($policy instanceof PolicyBuilder) {
+            return $policy->getPolicy();
+        }
+
+        if ($policy instanceof Closure) {
+            return $this->parseClosure($policy);
+        }
+
+        throw new InvalidArgumentException("Invalid policy declaration.");
+    }
+
+    /**
+     * Parse closure definition
+     *
+     * @param Closure $closure
+     *
+     * @return Policy
+     */
+    protected function parseClosure(Closure $closure)
+    {
+        call_user_func($closure, $builder = $this->newBuilder());
+
+        return $builder->getPolicy();
+    }
+
+    /**
+     * Get a new builder instance
+     *
+     * @return PolicyBuilder
+     */
+    public function newBuilder()
+    {
+        return new PolicyBuilder(new Policy);
     }
 
     /**
