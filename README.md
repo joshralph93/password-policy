@@ -84,6 +84,7 @@ Begin by adding the below service provider.
 // config/app.php
 
 'providers' => [
+    // ...
     \PasswordPolicy\Providers\Laravel\PasswordPolicyServiceProvider::class,
 ],
 ```
@@ -104,8 +105,8 @@ public function boot()
 {
     \PasswordPolicy::define('default', function (PolicyBuilder $builder) {
         $builder->minLength(8)
-            ->upperCase(3)
-            ...
+            ->upperCase(3);
+            // ...
     });
 }
 
@@ -129,7 +130,7 @@ Once you're policies have been defined, you're ready to start using the policies
 public function rules()
 {
     return [
-        ...
+        // ...
         'password' => 'required|password'
     ];
 }
