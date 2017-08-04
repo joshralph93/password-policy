@@ -85,7 +85,7 @@ The minimum number of rules in the *ruleSet* that need to pass, in order for thi
 ##### ruleSet
 Type: \Closure
 
-A closure which accepts a new PolicyBuilder instance.
+A closure which is given a new PolicyBuilder instance.
 
 *Example*
 
