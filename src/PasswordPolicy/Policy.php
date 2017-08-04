@@ -9,6 +9,9 @@ class Policy
         $this->rules[] = $rule;
     }
 
+    /**
+     * @return Rule[]
+     */
     public function rules()
     {
         return $this->rules;
