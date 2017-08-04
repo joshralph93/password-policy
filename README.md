@@ -75,6 +75,28 @@ Phrases that the password should not contain
 ->doesNotContain('password', $firstName, $lastName)
 ```
 
+#### minPassingRules(passesRequired, ruleSet)
+
+##### passesRequired
+Type: int
+
+The minimum number of rules in the *ruleSet* that need to pass, in order for this rule to pass
+
+##### ruleSet
+Type: \Closure
+
+A closure which accepts a new PolicyBuilder instance.
+
+*Example*
+
+```php
+// One of these rules must pass
+->minPassingRules(1, function (PolicyBuilder $builder) {
+    $builder->doesNotContain('password')
+        ->minLength(10);
+})
+```
+
 ### Laravel
 
 If you are a Laravel user, this package can seamlessly integrate with your validators.

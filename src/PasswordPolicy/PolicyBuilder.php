@@ -152,14 +152,14 @@ class PolicyBuilder
      * Add a nested set of minimum passing rules
      *
      * @param         $passesRequired
-     * @param Closure $closure
+     * @param Closure $ruleSet
      *
      * @return $this
      */
-    public function minPassingRules($passesRequired, Closure $closure)
+    public function minPassingRules($passesRequired, Closure $ruleSet)
     {
         $this->policy->addRule(
-            (new MinPassingRulesRule($passesRequired))->using($closure)
+            (new MinPassingRulesRule($passesRequired))->using($ruleSet)
         );
 
         return $this;
