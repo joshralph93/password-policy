@@ -63,7 +63,7 @@ class PasswordPolicyServiceProvider extends ServiceProvider
      */
     protected function configureValidationRule()
     {
-        $this->app['validator']->extend('password', PasswordValidator::class);
+        $this->app['validator']->extend('password', PasswordValidator::class . '@validate');
     }
 
     /**
