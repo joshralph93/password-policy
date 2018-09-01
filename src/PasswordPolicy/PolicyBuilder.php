@@ -4,6 +4,7 @@ use PasswordPolicy\Rules\CaseRule;
 use PasswordPolicy\Rules\ContainRule;
 use PasswordPolicy\Rules\DigitRule;
 use PasswordPolicy\Rules\LengthRule;
+use PasswordPolicy\Rules\SpecialCharacterRule;
 
 /**
  * Class PolicyBuilder
@@ -106,6 +107,15 @@ class PolicyBuilder
 
         $this->policy->addRule(
             (new ContainRule)->phrase($phrases)
+        );
+
+        return $this;
+    }
+
+    public function specialCharacters($min = 1)
+    {
+        $this->policy->addRule(
+            (new SpecialCharacterRule)->min($min)
         );
 
         return $this;
