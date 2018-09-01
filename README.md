@@ -62,6 +62,13 @@ Type: int
 
 Minimum number of numeric characters the password must contain.
 
+#### specialCharacters([min])
+
+##### min
+Type: int
+
+Minimum number of special characters the password must contain.
+
 #### doesNotContain(phrases [,phrases])
 
 ##### phrases
