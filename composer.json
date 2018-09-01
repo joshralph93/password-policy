@@ -3,6 +3,7 @@
   "description": "A library to intuitively create password policies and validate a subject against them.",
   "autoload": {
     "psr-4": {
+      "PasswordPolicy\\Tests\\": "tests/",
       "PasswordPolicy\\": "src/PasswordPolicy/"
     }
   },

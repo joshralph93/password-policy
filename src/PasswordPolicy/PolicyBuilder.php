@@ -6,6 +6,7 @@ use PasswordPolicy\Rules\ContainRule;
 use PasswordPolicy\Rules\DigitRule;
 use PasswordPolicy\Rules\LengthRule;
 use PasswordPolicy\Rules\MinPassingRulesRule;
+use PasswordPolicy\Rules\SpecialCharacterRule;
 
 /**
  * Class PolicyBuilder
@@ -164,6 +165,22 @@ class PolicyBuilder
 
         return $this;
     }
+
+    /**
+     * Special characters
+     * 
+     * @param int $min
+     * @return $this
+     */
+    public function specialCharacters($min = 1)
+    {
+        $this->policy->addRule(
+            (new SpecialCharacterRule)->min($min)
+        );
+
+        return $this;
+    }
+
 
     /**
      * Get the policy instance
