@@ -1,4 +1,4 @@
-<?php namespace PasswordPolicy\Tests;
+<?php namespace PasswordPolicy\Tests\Unit;
 
 use Mockery as m;
 use PasswordPolicy\Policy;
