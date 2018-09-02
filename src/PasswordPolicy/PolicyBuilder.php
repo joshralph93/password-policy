@@ -168,7 +168,7 @@ class PolicyBuilder
 
     /**
      * Special characters
-     * 
+     *
      * @param int $min
      * @return $this
      */
