@@ -1,6 +1,6 @@
 <?php
 
-namespace PasswordPolicy\Tests\Integration;
+namespace PasswordPolicy\Tests\Integration\Providers\Laravel;
 
 use PasswordPolicy\Policy;
 use PasswordPolicy\PolicyBuilder;
